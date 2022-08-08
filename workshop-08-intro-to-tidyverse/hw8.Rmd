@@ -1,0 +1,16 @@
+---
+title: "Jake's Homework #8"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+df <-read.csv("hw8_data.csv", check.names = FALSE)
+```
+
+## Question 1
+How many tissue samples are there by donor and what is their disease status?
+```{r}
+
+```
+
