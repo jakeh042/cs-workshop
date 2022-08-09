@@ -11,6 +11,38 @@ df <-read.csv("hw8_data.csv", check.names = FALSE)
 ## Question 1
 How many tissue samples are there by donor and what is their disease status?
 ```{r}
+q1 <- select(df, donor, `Tissue`, `Disease Status`)
+q1
+```
+
+## Question 2
+What is the average AND standard deviation values for CD45+ and PBMCs (%CD45) when grouped by disease status and tissue?
+```{r}
+q2 <- df %>%
+  group_by(`Disease Status`, `Tissue`) %>%
+  summarize(Avg = mean(`PBMCs (%CD45)`), St_Dev = sd(`PBMCs (%CD45)`)) %>%
+  arrange(desc(`Disease Status`))
+q2
+```
+
+## Question 3
+What is the mean difference between the Eosinophil populations between the different disease statuses, irrespective of tissue?
+```{r}
 
 ```
+
+## Question 4
+When stratified by tissue and disease status, which donors have the highest CD8 Tem CD69+ proportions?
+```{r}
+
+```
+
+## Question 5
+What are the average AND standard deviation values for all columns that start with “CD4 Tem” when grouped by disease status and tissue?
+```{r}
+
+```
+
+
+
 
