@@ -21,14 +21,18 @@ What is the average AND standard deviation values for CD45+ and PBMCs (%CD45) wh
 q2 <- df %>%
   group_by(`Disease Status`, `Tissue`) %>%
   summarize(Avg = mean(`PBMCs (%CD45)`), St_Dev = sd(`PBMCs (%CD45)`)) %>%
-  arrange(desc(`Disease Status`))
+  arrange(factor(`Disease Status`, levels=c("Normal", "Potential", "Affected")))
 q2
 ```
 
 ## Question 3
 What is the mean difference between the Eosinophil populations between the different disease statuses, irrespective of tissue?
 ```{r}
-
+q3 <- df %>%
+  group_by(`Disease Status`) %>%
+  summarize(Avg = mean(Eosinophils)) %>%
+  arrange(factor(`Disease Status`, levels=c("Normal", "Potential", "Affected")))
+q3
 ```
 
 ## Question 4
