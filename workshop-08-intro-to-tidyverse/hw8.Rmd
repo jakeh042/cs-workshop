@@ -38,7 +38,12 @@ q3
 ## Question 4
 When stratified by tissue and disease status, which donors have the highest CD8 Tem CD69+ proportions?
 ```{r}
-
+q4 <- df %>%
+  group_by(`Tissue`, `Disease Status`) %>%
+  filter(`CD8 Tem CD69+` == max(`CD8 Tem CD69+`)) %>%
+  select(`donor`, `Tissue`, `Disease Status`, `CD8 Tem CD69+`) %>%
+  arrange(factor(`Disease Status`, levels=c("Normal", "Potential", "Affected")))
+q4
 ```
 
 ## Question 5
