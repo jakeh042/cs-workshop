@@ -20,7 +20,7 @@ What is the average AND standard deviation values for CD45+ and PBMCs (%CD45) wh
 ```{r}
 q2 <- df %>%
   group_by(`Disease Status`, `Tissue`) %>%
-  summarize(Avg = mean(`PBMCs (%CD45)`), St_Dev = sd(`PBMCs (%CD45)`)) %>%
+  summarize(Avg = mean(`PBMCs (%CD45)`), StDev = sd(`PBMCs (%CD45)`)) %>%
   arrange(factor(`Disease Status`, levels=c("Normal", "Potential", "Affected")))
 q2
 ```
@@ -49,9 +49,10 @@ q4
 ## Question 5
 What are the average AND standard deviation values for all columns that start with “CD4 Tem” when grouped by disease status and tissue?
 ```{r}
-
+q5 <- df %>%
+  group_by(`Disease Status`, `Tissue`) %>%
+  select(starts_with("CD4 Tem")) %>%
+  summarise(across(where(is.numeric), mean)) %>%
+  arrange(factor(`Disease Status`, levels=c("Normal", "Potential", "Affected")))
+q5
 ```
-
-
-
-
