@@ -27,5 +27,60 @@ library(dplyr)
 ```{r}
 # courtesy of @gregory-golden;
 # noised and randomised data from flow experiments; hw8_data.csv
+
+df <-read.csv("hw8_data.csv", check.names = FALSE)
+
+head(df)
+colnames(df)
 ```
+
+
+```{r}
+select(df, donor, Sex, `Disease Status`)
+smallDF <- select(df, donor, Sex, `Disease Status`)
+
+
+filter(smallDF, Sex == "F")
+
+
+mutate(smallDF, donorExpanded = paste0("SCUBA_", donor))
+mutate(smallDF, Sex = ifelse(Sex == "M", "Male", "Female"))
+
+
+arrange(smallDF, desc(donor))
+```
+
+```{r}
+### Piping
+
+jakeDF <- smallDF %>%
+  filter(Sex == "F") %>%
+  mutate(jakeWrath = 42) %>%
+  select(-jakeWrath) %>% # deletes the column entirely
+  arrange(desc(donor))
+```
+
+```{r}
+df %>%
+  group_by(`Disease Status`, Tissue) %>%
+  summarize(CD45posAvg = mean(`CD45+`))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
